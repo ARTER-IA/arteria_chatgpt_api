@@ -77,7 +77,7 @@ def check_health():
     hb = data.get("hb")
 
     prompt = (
-        f"Actúa como un asistente de un cardiólogo. Con los siguientes datos porcentuales de probabilidad de que un paciente específico tenga Enfermedad Arterial Coronaria (EAC), proporciona una lista de recomendaciones que debe tomar el paciente para cuidar su salud. "
+        f"Actúa como un asistente de un cardiólogo. Con los siguientes datos porcentuales de probabilidad de que un paciente específico tenga Enfermedad Arterial Coronaria (EAC), proporciona una lista de recomendaciones que debe tomar el paciente para cuidar su salud, de máximo 500 palabras. "
         f"La probabilidad de EAC es de {prediction_probability:.2f}% y la predicción de clase de EAC es {'positiva' if predicted_class else 'negativa'}. "
         f"Los datos del paciente son: "
         f"Edad: {age} años, Peso: {weight} kg, Talla: {length} cm, Sexo: {sex}, IMC: {bmi:.2f}, Diabetes: {'Sí' if dm != 0 else 'No'}, Hipertensión: {'Sí' if htn != 0 else 'No'}, "
@@ -96,7 +96,7 @@ def check_health():
                 {"role": "system", "content": "Eres un asistente de un médico cardiólogo."},
                 {"role": "user", "content": prompt},
             ],
-            max_tokens=500,
+            max_tokens=1000,
             temperature=0.7,
         )
 
